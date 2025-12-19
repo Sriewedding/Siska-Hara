@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Undangan Pernikahan - Siska & Hara</title>
+<!-- Open Graph WhatsApp Preview -->
+<meta property="og:title" content="Undangan Pernikahan Pipit & Faiq">
+<meta property="og:description" content="Kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri pernikahan kami">
+<meta property="og:image" content="https://srie-wedding-invitation.netlify.app/assets/images/Wa photo.jpg">
+<meta property="og:url" content="https://srie-wedding-invitation.netlify.app/">
+<meta property="og:type" content="website">
+
+<!-- Fallback -->
+<meta name="twitter:card" content="summary_large_image">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --gold:#c9a24d;
+  --dark:#2c2c2c;
+  --bg:#faf7f2;
+  --shadow:0 10px 20px rgba(0,0,0,0.06);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:Poppins,sans-serif;
+  background:var(--bg);
+  color:var(--dark);
+  overflow-x:hidden;
+}
+
+/* ===== GLOBAL SPACING ===== */
+section{
+  text-align:center;
+  padding:30px 20px;
+}
+
+h1,h2,h3{line-height:1}
+p{line-height:2;margin:0px 0}
+
+/* ===== ANIMATION ===== */
+.reveal{
+  opacity:0;
+  transform:translateY(30px);
+  transition:1s ease;
+}
+.reveal.show{
+  opacity:1;
+  transform:none;
+}
+.delay-1{transition-delay:.2s}
+.delay-2{transition-delay:.4s}
+.delay-3{transition-delay:.6s}
+
+/* ===== OPENING ===== */
+#opening{
+  position: relative;
+  height: 100svh;
+  overflow: hidden;
+  background: #000;
+}
+
+/* VIDEO BLUR */
+.video-blur{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(22px) brightness(.6);
+  transform: scale(1.15);
+  z-index: 0;
+}
+
+/* VIDEO UTAMA */
+#openingVideo{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 1;
+}
+
+
+#overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.45); /* transparan, video kelihatan */
+  backdrop-filter:blur(2px);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  z-index:2;
+
+  transition: opacity .9s ease;
+}
+
+}
+#overlay h1{
+  font-family:'Playfair Display';
+  letter-spacing:3px;
+  margin-bottom:8px;
+}
+#overlay h2{
+  font-family:'Playfair Display';
+  font-size:42px;
+  margin:8px 0;
+}
+#overlay p{
+  font-size:14px;
+  letter-spacing:.5px;
+}
+
+#openBtn{
+  margin-top:22px;
+  padding:14px 42px;
+  border-radius:50px;
+  border:none;
+  background:var(--gold);
+  color:#fff;
+  font-weight:600;
+  cursor:pointer;
+}
+
+/* ===== CARD ===== */
+.card{
+  position:relative;
+  background:rgba(255,255,255,.82);
+  padding:34px 26px;
+  border-radius:30px;
+  max-width:420px;
+  margin:20px auto;
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border:1px solid rgba(255,255,255,.6);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.9),
+    0 18px 40px rgba(0,0,0,.12);
+}
+
+/* ===== GOLD ACCENT LINE ===== */
+.card::before{
+  content:"";
+  position:absolute;
+  top:18px;
+  left:50%;
+  transform:translateX(-50%);
+  width:46px;
+  height:4px;
+  border-radius:10px;
+  background:linear-gradient(
+    to right,
+    transparent,
+    var(--gold),
+    transparent
+  );
+  opacity:.9;
+}
+
+/* ===== MAP BUTTON ===== */
+.btn-maps{
+  display:inline-block;
+  margin-top:16px;
+  padding:10px 28px;
+  background:var(--gold);
+  color:#fff;
+  text-decoration:none;
+  border-radius:30px;
+  font-size:14px;
+}
+
+/* ===== BANK ===== */
+.card.bank{
+  background:linear-gradient(135deg,#1e3c72,#2a5298);
+  color:#fff;
+  text-align:left;
+}
+.btn-copy{
+  float:right;
+  background:rgba(255,255,255,.15);
+  border:1px solid rgba(255,255,255,.3);
+  color:#fff;
+  padding:6px 14px;
+  border-radius:8px;
+  font-size:11px;
+  cursor:pointer;
+}
+
+/* ===== CHAT ===== */
+.chat-container{
+  max-width:440px;
+  margin:20px auto;
+  background:#fff;
+  border-radius:26px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.chat-header{
+  background:var(--gold);
+  color:#fff;
+  padding:16px;
+}
+#wishList{
+  height:300px;
+  padding:20px;
+  overflow-y:auto;
+  background:#fdfbf8;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.msg{
+  background:linear-gradient(135deg,#ffffff,#faf7f2);
+  padding:16px 18px;
+  border-radius:20px;
+  border-left:4px solid var(--gold);
+  box-shadow:0 8px 20px rgba(0,0,0,.08);
+  text-align:left;
+
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+.msg b{color:var(--gold);font-size:14px}
+.msg .time{
+  font-size:10px;
+  color:#aaa;
+  display:block;
+  text-align:right;
+  margin-top:6px;
+}
+#wishForm{
+  padding:20px;
+  border-top:1px solid #eee;
+}
+#wishForm input,#wishForm textarea{
+  width:100%;
+  padding:12px;
+  margin-bottom:12px;
+  border-radius:12px;
+  border:1px solid #eee;
+}
+#wishForm button{
+  width:100%;
+  padding:14px;
+  border-radius:14px;
+  border:none;
+  background:var(--dark);
+  color:#fff;
+}
+/* ===== ADVANCED CHAT ANIMATION ===== */
+@keyframes chatPop {
+  0% {
+    opacity: 0;
+    transform: translateY(14px) scale(0.96);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-2px) scale(1.01);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+.msg {
+  animation: chatPop 0.45s cubic-bezier(.22,.61,.36,1);
+  will-change: transform, opacity;
+}
+#wishForm button {
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+#wishForm button:active {
+  transform: scale(0.94);
+  box-shadow: 0 6px 14px rgba(0,0,0,.15);
+}
+
+/* ===== BLOK NAMA TAMU (GLASS ELEGAN) ===== */
+#namaTamu{
+  display:inline-block;
+  margin-top:10px;
+  padding:10px 22px;
+
+  background:rgba(255,255,255,.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.4);
+  box-shadow:0 8px 20px rgba(0,0,0,.18);
+
+  font-weight:600;
+  font-size:15px;
+  color:#fff;
+  letter-spacing:.3px;
+}
+
+/* ===== TOMBOL BUKA UNDANGAN – 3D GLOSSY ===== */
+#openBtn{
+  position:relative;
+  padding:16px 44px;
+  border-radius:999px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(255,255,255,.75) 0%,
+      rgba(255,255,255,.45) 45%,
+      rgba(200,200,200,.25) 55%,
+      rgba(255,255,255,.15) 100%
+    );
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border:1px solid rgba(255,255,255,.55);
+
+  box-shadow:
+    inset 0 2px 0 rgba(255,255,255,.9),
+    inset 0 -3px 8px rgba(0,0,0,.18),
+    0 18px 40px rgba(0,0,0,.35);
+
+  color:#fff;
+  font-size:14px;
+  font-weight:600;
+  letter-spacing:.6px;
+  text-transform:uppercase;
+
+  cursor:pointer;
+  transition:all .35s ease;
+}
+
+/* ===== GOLD GLOSSY BUTTON ===== */
+#openBtn{
+  position:relative;
+  padding:16px 46px;
+  border-radius:999px;
+  border:none;
+
+  background:
+    linear-gradient(
+      to bottom,
+      #fff3c4 0%,
+      #f7d97a 18%,
+      #e6b84e 45%,
+      #c89a2e 55%,
+      #b8871f 100%
+    );
+
+  box-shadow:
+    inset 0 2px 0 rgba(255,255,255,.95),
+    inset 0 -4px 10px rgba(0,0,0,.25),
+    0 20px 45px rgba(0,0,0,.45);
+
+  color:#4a3608;
+  font-size:14px;
+  font-weight:600;
+  letter-spacing:.8px;
+  text-transform:uppercase;
+
+  cursor:pointer;
+  transition:all .35s cubic-bezier(.22,.61,.36,1);
+}
+
+/* ===== GLOSSY SHINE ===== */
+#openBtn::before{
+  content:"";
+  position:absolute;
+  top:10%;
+  left:12%;
+  width:76%;
+  height:36%;
+  border-radius:999px;
+  background:linear-gradient(
+    to bottom,
+    rgba(255,255,255,.95),
+    rgba(255,255,255,0)
+  );
+  pointer-events:none;
+}
+
+/* ===== HOVER ===== */
+#openBtn:hover{
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 2px 0 rgba(255,255,255,.95),
+    inset 0 -6px 14px rgba(0,0,0,.28),
+    0 28px 60px rgba(0,0,0,.5);
+}
+
+/* ===== ACTIVE ===== */
+#openBtn:active{
+  transform: translateY(1px);
+  box-shadow:
+    inset 0 4px 12px rgba(0,0,0,.35),
+    0 12px 30px rgba(0,0,0,.35);
+}
+
+
+
+
+</style>
+</head>
+
+<body>
+
+<section id="opening">
+  <!-- VIDEO BLUR BACKGROUND -->
+  <video class="video-blur" autoplay muted loop playsinline>
+    <source src="Wedding Invitation Siska comp.mp4" type="video/mp4">
+  </video>
+
+  <!-- VIDEO UTAMA -->
+  <video id="openingVideo" muted playsinline>
+    <source src="Wedding Invitation Siska comp.mp4" type="video/mp4">
+  </video>
+
+  <div id="overlay">
+    <h1 class="reveal">The Wedding Of</h1>
+    <h2 class="reveal delay-1">Siska & Hara</h2>
+    <p>Tamu Undangan</p>
+    <p id="namaTamu" class="reveal delay-2">Tamu Undangan</p>
+    <div class="reveal delay-3">
+      <button id="openBtn">Buka Undangan</button>
+    </div>
+  </div> 
+</section>
+
+
+<section class="reveal">
+  <h2>Assalamu’alaikum warahmatullahi wabarakatuh</h2>
+  <p>Dengan penuh rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk meluangkan waktu menghadiri acara pernikahan kami sebagai bentuk doa dan restu yang sangat berarti bagi kami.</p>
+  <div class="card delay-1">
+    <h3>Siska Dwi Anggraeni</h3>
+    <h2 style="color:var(--gold);margin:14px 0">&</h2>
+    <h3>Bong Haryanto</h3>
+  </div>
+</section>
+
+<section class="reveal">
+  <h2>Waktu & Tempat</h2>
+
+  <div class="card delay-1">
+    <h3>Akad Nikah & Resepsi Pernikahan</h3>
+    <p>Minggu, 28 Desember 2025</p>
+    <p style="color:var(--gold);font-weight:600">11.00 WIB</p>
+    <p>Hotel Dafam Wonosobo</p>
+    <a class="btn-maps" href="https://maps.app.goo.gl/JkzT3Hz1Lx2GoBNm9" target="_blank">Google Maps</a>
+  </div>
+</section>
+
+
+<section class="reveal">
+  <h2>Ucapan & Doa</h2>
+  <p>Kami dengan penuh kebahagiaan menerima setiap doa,</p>
+  <p>harapan, dan restu tulus dari Anda.</p>
+
+  <div class="chat-container delay-1">
+    <div class="chat-header">
+       Buku Tamu
+    </div>
+
+    <div id="wishList"></div>
+    <button id="resetChatBtn" style="display:none;margin:12px auto 0;
+background:#c0392b;color:#fff;border:none;
+padding:10px 20px;border-radius:12px;font-size:12px">
+  Reset Semua Ucapan
+</button>
+
+
+    <form id="wishForm">
+      <input type="text" id="name" placeholder="Nama Anda" required>
+      <textarea id="message" rows="3" placeholder="Tulis ucapan & doa..." required></textarea>
+      <button id="submitBtn" type="submit">Kirim Ucapan</button>
+    </form>
+  </div>
+</section>
+
+
+
+<script type="module">
+import { remove } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDLZlUiLbCfk6PI6umLapQafXIBOO5Ta-c",
+  authDomain: "wedding-invitation-e028b.firebaseapp.com",
+  databaseURL: "https://wedding-invitation-e028b-default-rtdb.firebaseio.com",
+  projectId: "wedding-invitation-e028b",
+  storageBucket: "wedding-invitation-e028b.firebasestorage.app",
+  messagingSenderId: "708816392220",
+  appId: "1:708816392220:web:e114e2a4ad465aeb308fd9"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+/* ELEMENT WISH */
+const wishForm = document.getElementById('wishForm');
+const wishList = document.getElementById('wishList');
+const submitBtn = document.getElementById('submitBtn');
+const name = document.getElementById('name');
+const message = document.getElementById('message');
+
+/* LOOP VIDEO OPENING */
+openingVideo.loop = true;
+openingVideo.addEventListener('ended', () => {
+  openingVideo.play();
+});
+
+
+
+/* COPY BANK */
+document.querySelectorAll('.btn-copy').forEach(btn=>{
+  btn.onclick=()=>{
+    navigator.clipboard.writeText(btn.dataset.norek);
+    btn.textContent="Tersalin!";
+    setTimeout(()=>btn.textContent="Salin",1500);
+  }
+});
+
+/* NAMA TAMU */
+const params=new URLSearchParams(location.search);
+const kpd=params.get('kpd');
+if(kpd) document.getElementById('namaTamu').textContent=decodeURIComponent(kpd.replace(/\+/g,' '));
+
+/* OPEN */
+openBtn.onclick = () => {
+  // unmute + play (WAJIB setelah user interaction)
+  openingVideo.muted = false;
+  openingVideo.volume = 1;
+  openingVideo.play().catch(()=>{});
+
+  // animasi fade overlay
+  overlay.style.opacity = 0;
+
+  setTimeout(() => {
+    overlay.remove();
+  }, 900);
+};
+
+
+/* REVEAL */
+const obs=new IntersectionObserver(e=>{
+  e.forEach(x=>x.isIntersecting&&x.target.classList.add('show'))
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+/* WISH */
+wishForm.onsubmit=async e=>{
+  e.preventDefault();
+  const n=name.value.trim(),m=message.value.trim();
+  if(!n||!m)return;
+  submitBtn.disabled=true;
+  await set(ref(db,'wishes/'+Date.now()),{name:n,message:m,timestamp:Date.now()});
+  wishForm.reset();
+  submitBtn.disabled=false;
+};
+onValue(ref(db,'wishes'),snap=>{
+  wishList.innerHTML='';
+  snap.forEach(s=>{
+    const w=s.val();
+    const d=document.createElement('div');
+    d.className='msg';
+    d.innerHTML=`<b>${w.name}</b><p>${w.message}</p>
+    <span class="time">${new Date(w.timestamp).toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'})}</span>`;
+    d.style.animationDelay = `${wishList.children.length * 0.04}s`;
+wishList.appendChild(d);
+
+
+    /* ADMIN RESET CHAT */
+const admin = params.get('admin');
+const resetBtn = document.getElementById('resetChatBtn');
+
+if (admin === 'reset' && resetBtn) {
+  resetBtn.style.display = 'block';
+
+  resetBtn.onclick = async () => {
+    const ok = confirm('Yakin ingin menghapus semua ucapan?');
+    if (!ok) return;
+
+    await remove(ref(db, 'wishes'));
+    alert('Semua ucapan berhasil dihapus');
+  };
+}
+
+  });
+  wishList.scrollTo({
+  top: wishList.scrollHeight,
+  behavior: 'smooth'
+});
+
+});
+</script>
+
+
+</body>
+</html>
